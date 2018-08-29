@@ -64,5 +64,3 @@ class Zipcode extends Component {
 }
 export default Zipcode
 
-//https://stackoverflow.com/questions/10340685/get-city-name-from-zip-code-google-geocoding
-//https://nobleintentstudio.com/blog/zip-code-to-city-state-lookup/
