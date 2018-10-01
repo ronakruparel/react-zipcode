@@ -4,12 +4,16 @@ export function getStateAndCity(zipcode) {
         .then(result => {
             let data = {
                 state: '',
-                city: ''
-            }
+                city: '',
+                lat:'',
+                lng:''
+            } 
             let address_components = result.data.results[0].address_components;
-            address_components.map(component => {
+            data.lat =result.data.results[0].geometry.location.lat;
+            data.lng =result.data.results[0].geometry.location.lng;   
+             address_components.map(component => {
                 let types = component.types;
-                types.map(type => {
+                 types.map(type => {
                     if (type === 'administrative_area_level_1')
                         data.state = component.long_name
                     if (type === 'locality')

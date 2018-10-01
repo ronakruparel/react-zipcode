@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-//import Autocomplete from './components/Autocomplete'
-import Zipcode from './components/Zipcode'
+import Date from './components/Date'
+import Autocomplete from './components/Autocomplete'
+//import Zipcode from './components/Zipcode'
 class App extends Component {
   render() {
     return (
-      <Zipcode/>
+      <Date/>
+        //<Zipcode />
       //<Autocomplete />
     );
   }
