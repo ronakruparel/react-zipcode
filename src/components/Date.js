@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+
+const indicator = "X";
+const orderCode = "FRC";
 const response =
 {
     "marriageServiceOrderCode": "MON",
@@ -12,35 +15,35 @@ const response =
     "appointments": [
         {
             "appointmentDate": "2018-04-24",
-            "appointmentBusinessDayIndicator": "X",
-            "appointmentUnavailable": "X",
-            "appointmentServiceOrderCode": "FRC"
+            "appointmentBusinessDayIndicator": indicator,
+            "appointmentUnavailable": indicator,
+            "appointmentServiceOrderCode": orderCode
         },
         {
             "appointmentDate": "2018-04-25",
-            "appointmentBusinessDayIndicator": "X",
-            "appointmentUnavailable": "X",
-            "appointmentServiceOrderCode": "FRC"
+            "appointmentBusinessDayIndicator": indicator,
+            "appointmentUnavailable": indicator,
+            "appointmentServiceOrderCode": orderCode
         },
         {
             "appointmentDate": "2018-04-26",
-            "appointmentBusinessDayIndicator": "X",
-            "appointmentUnavailable": "X",
-            "appointmentServiceOrderCode": "FRC"
+            "appointmentBusinessDayIndicator": indicator,
+            "appointmentUnavailable": indicator,
+            "appointmentServiceOrderCode": orderCode
         },
         {
             "appointmentDate": "2018-04-27",
-            "appointmentBusinessDayIndicator": "X",
-            "appointmentUnavailable": "X",
-            "appointmentServiceOrderCode": "FRC",
+            "appointmentBusinessDayIndicator": indicator,
+            "appointmentUnavailable": indicator,
+            "appointmentServiceOrderCode": orderCode,
             "appointmentStartTime": "07:00:00",
             "appointmentEndTime": "17:00:00"
         },
         {
             "appointmentDate": "2018-04-27",
-            "appointmentBusinessDayIndicator": "X",
-            "appointmentUnavailable": "X",
-            "appointmentServiceOrderCode": "FRC",
+            "appointmentBusinessDayIndicator": indicator,
+            "appointmentUnavailable": indicator,
+            "appointmentServiceOrderCode": orderCode,
             "appointmentStartTime": "12:30:00",
             "appointmentEndTime": "15:30:00"
         }
@@ -54,15 +57,17 @@ class Date extends Component {
         this.state = {
             selectedDate: ''
         }
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
     }
-    handleChange(date) {
+
+    handleChange = (date) => {
         this.setState({
             selectedDate: date.format(dateFormat)
         })
     }
-    availableDates(dateArray) {
-        let priority={
+
+    availableDates = (dateArray) => {
+        let priority = {
             appointmentDate:response.marriageAppointmentDate
         }
         dateArray.push(priority)
@@ -70,9 +75,13 @@ class Date extends Component {
             return moment(date.appointmentDate, dateFormat)
         })
     }
-    monthChange() {
-        console.log("Month changed");
-    }
+   
+    // monthChange() {
+    //     console.log("Month changed");
+    // }
+    // unneccesary code 
+
+
     render() {
         const state = this.state;
 
@@ -85,7 +94,7 @@ class Date extends Component {
                     monthsShown={2}
                     includeDates={this.availableDates(response.appointments)}
                     highlightDates={this.availableDates(response.appointments)}
-                    onMonthChange={this.monthChange}
+                    // onMonthChange={this.monthChange}
                 />
                 <label>Date Selected: {state.selectedDate}</label>
             </div>

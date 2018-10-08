@@ -1,30 +1,28 @@
-/*global google*/
 import React, { Component } from 'react';
 import { getStateAndCity } from '../API/GeocodeApi'
 import '../App.css';
+
 class Zipcode extends Component {
     constructor() {
         super()
         this.state = {
             zipcode: '',
-            state: '',
+            State: '',
             city: '',
             lat: 38.8881493,
             lng: -77.0150773
         }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-    handleChange(event) {
-        const target = event.target;
-        const value = target.value;
+    handleChange = (event) => {
+        const value = event.target.value;
         this.setState({
             zipcode: value
         })
 
     }
-    handleSubmit(event) {
+
+    handleSubmit = (event) => {
         event.preventDefault();
         getStateAndCity(this.state.zipcode)
             .then(data => this.setState({
@@ -34,6 +32,7 @@ class Zipcode extends Component {
                 lng: data.lng
             }))
     }
+
     componentDidMount() {
         this.map = new google.maps.Map(this.refs.map, {
             center: { lat: this.state.lat, lng: this.state.lng },
@@ -42,8 +41,9 @@ class Zipcode extends Component {
             disableDefaultUI: true
         });
     }
+
     render() {
-        const state = this.state
+        const {city, State} = this.state
         const mapStyle = {
             width: 700,
             height: 200,
@@ -59,19 +59,16 @@ class Zipcode extends Component {
                         placeholder="Zip"
                         onChange={this.handleChange}
                     />
-
-                    {/* <input type="text" placeholder="City" />  */}
-
                 </form>
                 <input
                     type="text"
                     placeholder="City"
-                    value={state.city}
+                    value={city}
                 />
                 <input
                     type="text"
                     placeholder="State"
-                    value={state.state}
+                    value={State}
                 />
                 <div ref="map" style={mapStyle}></div>
             </div>
